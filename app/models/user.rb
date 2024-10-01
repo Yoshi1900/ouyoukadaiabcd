@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_many :book_comments,dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :active_relationships, class_name:'Relationship', foreign_key: 'follower_id', dependent: :destroy
-  has_many :followeings, through: :active_relationships, source: :followed
-  has_many :passive_relationship, class_name:'Relationship', foreign_key: 'followed_id', dependent: :destroy
+  has_many :followings, through: :active_relationships, source: :followed
+  has_many :passive_relationships, class_name:'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
 
 
@@ -27,11 +27,11 @@ class User < ApplicationRecord
  end
 
  def follow(user)
-  active_relationship.create(followed_id: user.id)
+  active_relationships.create(followed_id: user.id)
  end
 
  def unfollow(user)
-  active_relationship.find_by(followed_id: user.id).destroy
+  active_relationships.find_by(followed_id: user.id).destroy
  end
 
  def following?(user)

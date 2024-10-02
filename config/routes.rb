@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
     resource :favorite, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]
+    get :tags, on: :collection
   end
 
 

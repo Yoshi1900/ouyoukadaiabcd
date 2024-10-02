@@ -15,16 +15,21 @@ class BooksController < ApplicationController
     elsif params[:star_count]
       @books = Book.star_count
     else
-      @books = Book.all
+     @books = params[:tag_id].present? ? Tag.find(params[:tag_id]).books : Book.all
     end
-    
     @book = Book.new
+  end
+
+  def tags
+    @tags = tag.all
   end
 
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    tag_list = params[:book][:tag_ids].splite(',')
     if @book.save
+      @book.save_tags(tag_list)
       redirect_to book_path(@book), notice: "You have created book successfully."
     else
       @books = Book.all

@@ -7,6 +7,7 @@ class Book < ApplicationRecord
   has_many :book_relationships, dependent: :destroy
   has_many :tags, through: :book_relationships
 
+validates :category, presence: true
 
 scope :latest, -> {order(create_at: :desc)}
 scope :old, -> {order(created_at: :asc)}

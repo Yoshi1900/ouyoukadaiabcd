@@ -13,10 +13,12 @@
     <%= render 'layouts/header' %>
       <main>
         <div><%= flash[:notice] %></div>
+      <% if user_signed_in? %>
         <div class="d-flex justify-content-center mb-2">
           <%= render "searches/form" %>
+          <%= render "tagsearches/form" %>
         </div>
-
+      <% end %>
         <%= yield %>
       </main>
     <%= render 'layouts/footer' %>

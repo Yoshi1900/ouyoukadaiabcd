@@ -83,6 +83,6 @@ config.hosts << "67292131ecb2463a9c60f9690eb69425.vfs.cloud9.ap-northeast-1.amaz
   password:             'fqzk jfhc cruu mezy',
   authentication:       'login',
   enable_starttls_auto:  true
-  
+  }
   
 end
